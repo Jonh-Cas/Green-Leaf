@@ -9,12 +9,12 @@ import { Props } from '../interfaces/customInputInterfaces';
 
 const CustomInput = ({ placeHolder, field, saveValue, handleBlur, error, touched, value }: Props) => {
 
-    const [isShown, setIsShown] = useState( (field === 'pass' ) ? true : false  );
+    const [isShown, setIsShown] = useState( (field === 'pass' || field === 'repeatPass' ) ? true : false  );
 
     return (
         <View style={styles.container} >
             <TextInput
-                placeholder={ menuInput(field).placeholder}
+                placeholder={ placeHolder}
                 keyboardType={ menuInput(field).keyboardType }
                 maxLength={ menuInput(field).maxLeght }
                 secureTextEntry={ isShown }
@@ -32,7 +32,7 @@ const CustomInput = ({ placeHolder, field, saveValue, handleBlur, error, touched
                 (error && touched)
                     ?
                     <Icon
-                        name='close-circle-outline'
+                        name='close-circle'
                         size={25}
                         color='red'
                         style={{ alignSelf: 'center', justifyContent: 'center' }}
@@ -40,7 +40,7 @@ const CustomInput = ({ placeHolder, field, saveValue, handleBlur, error, touched
                     : ((error === undefined) && touched === true)
                         ?
                         <Icon
-                            name='checkmark-circle-outline'
+                            name='checkmark-circle'
                             size={25}
                             color='green'
                             style={{ alignSelf: 'center', justifyContent: 'center' }}
@@ -49,7 +49,7 @@ const CustomInput = ({ placeHolder, field, saveValue, handleBlur, error, touched
                         : null
             }
             {
-                (field === 'pass') ?
+                (field === 'pass' || field === 'repeatPass' ) ?
                 <View style={styles.iconPass} >
                     <TouchableOpacity 
                         onPress={ () => setIsShown( !isShown ) }
@@ -71,6 +71,7 @@ const CustomInput = ({ placeHolder, field, saveValue, handleBlur, error, touched
             </View>
 
             }
+
 
         </View>
     )

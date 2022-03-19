@@ -1,19 +1,17 @@
 import { KeyboardTypeOptions } from "react-native";
-import { Props } from "../interfaces/customInputInterfaces";
+import { fieldProps } from '../interfaces/customInputInterfaces';
 
 interface textInputProps {
-    placeholder: string | undefined,
     keyboardType:  KeyboardTypeOptions | undefined,
     maxLeght:  number | undefined,
     icon: string;
 }
 
-type valuesInput = | 'email' | 'pass'
 
- const menuInput = ( field: valuesInput  )  => {
+ const menuInput = ( field: fieldProps  )  => {
      
     let textInputValue: textInputProps = {
-        placeholder: undefined,
+
         keyboardType: undefined,
         maxLeght: undefined,
         icon: '',
@@ -22,7 +20,6 @@ type valuesInput = | 'email' | 'pass'
     switch (field) {
         case 'email':
             textInputValue = {
-                placeholder: ' Correo',
                 keyboardType: 'email-address',
                 maxLeght: 50,
                 icon: 'mail-outline'
@@ -30,9 +27,26 @@ type valuesInput = | 'email' | 'pass'
             break;
         
             case 'pass':
+            case 'repeatPass':
             textInputValue = {
                 icon: 'key-outline',
-                placeholder: ' Contraseña',
+                keyboardType: 'default',
+                maxLeght: 30,
+            };
+            break;
+
+            case 'name':
+            textInputValue = {
+                icon: 'person',
+                keyboardType: 'default',
+                maxLeght: 30,
+            };
+            break;
+
+            case 'lastName1':
+            case 'lastName2':
+            textInputValue = {
+                icon: 'person',
                 keyboardType: 'default',
                 maxLeght: 30,
             };

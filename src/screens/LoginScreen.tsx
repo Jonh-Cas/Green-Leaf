@@ -3,23 +3,19 @@ import { View, StyleSheet, Text } from 'react-native';
 import { useFormik } from 'formik';
 import CustomInput from '../components/CustomInput';
 import HeaderIcon from '../components/HeaderIcon';
-import CustomButon from '../components/CustomButon';
+import CustomButon from '../components/CustomButton';
+import { initialValues } from '../functions/LoginFunc';
+import { StackScreenProps } from '@react-navigation/stack';
+import { StackAppParams } from '../interfaces/StackAppNavigationInterfaces';
 
-interface initialValuesProps {
-  email: string;
-  pass: string;
-}
 
-const initialValues: initialValuesProps = {
-  email: '',
-  pass: '',
-}
+interface Props extends StackScreenProps<StackAppParams, 'LoginScreen'>{}
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }: Props) => {
 
   const { values, setFieldValue, errors, handleBlur, handleSubmit, touched } = useFormik({
     initialValues: initialValues,
-    onSubmit: () => console.log('Hola mundo'),
+    onSubmit: values => console.log('Values', values),
 
     // validationSchema: ,
 
@@ -55,25 +51,22 @@ const LoginScreen = () => {
 
         <CustomButon 
           name='Iniciar Sesión'
-          color1='#2988bc'
-          color2='#556dac'
-          onPress={ () => console.log('Press..') }
+          colors={['#2988bc', '#556dac' ]}
+          onPress={ handleSubmit }
           styleText={ styles.stylesTxtButon }
         />
 
         <CustomButon 
           name='Olvidaste tu contraseña'
-          color1='transparent'
-          color2='transparent'
+          colors={['transparent', 'transparent']}
           onPress={ () => console.log('Press..') }
           styleText={{ fontSize: 14, color: '#000' }}
         />
 
         <CustomButon 
           name='Crear cuenta nueva'
-          color1='transparent'
-          color2='transparent'
-          onPress={ () => console.log('Press..') }
+          colors={['transparent', 'transparent']}
+          onPress={ () => navigation.navigate('NewCountScreen') }
           styleText={{ fontSize: 14, color: '#000' }}
         />
 

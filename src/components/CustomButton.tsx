@@ -5,17 +5,16 @@ import { number } from 'yup';
 
 interface Props {
     name: string;
-    color1: string;
-    color2: string;
+    colors: string[];
     onPress: () => void;
     styleText?: StyleProp<TextStyle>
     styleView?: StyleProp<ViewStyle>
 }
 
-const CustomButon = ({name, color1, color2, onPress, styleText, styleView  }: Props) => {
+const CustomButton = ({name, colors, onPress, styleText, styleView  }: Props) => {
     return (
         <LinearGradient 
-            colors={[ color1, color2 ]}
+            colors={colors}
             style={{...styles.stylesButon, ...styleView as any  }}
         >
             <Pressable
@@ -27,7 +26,7 @@ const CustomButon = ({name, color1, color2, onPress, styleText, styleView  }: Pr
     )
 }
 
-export default CustomButon;
+export default CustomButton;
 
 const styles = StyleSheet.create({
 
