@@ -25,6 +25,13 @@ interface textInputProps {
                 icon: 'mail-outline'
             };
             break;
+        case 'phone':
+            textInputValue = {
+                keyboardType: 'phone-pad',
+                maxLeght: 50,
+                icon: 'phone-portrait-outline'
+            };
+            break;
         
             case 'pass':
             case 'repeatPass':
@@ -36,6 +43,7 @@ interface textInputProps {
             break;
 
             case 'name':
+            case 'secondName':
             textInputValue = {
                 icon: 'person',
                 keyboardType: 'default',

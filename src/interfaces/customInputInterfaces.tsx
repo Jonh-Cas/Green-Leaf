@@ -11,4 +11,12 @@ export interface Props {
     
 }
 
-export type fieldProps =  'email' |  'pass' | 'repeatPass' | 'name' | 'lastName1' | 'lastName2'  
+export type fieldProps =  
+    'email' | 
+    'pass' |  
+    'repeatPass' | 
+    'name' | 
+    'secondName' | 
+    'lastName1' | 
+    'lastName2' |
+    'phone'  
