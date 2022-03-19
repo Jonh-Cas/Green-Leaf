@@ -30,7 +30,9 @@ const LoginScreen = () => {
         <HeaderIcon />
 
       <View style={{ ...styles.target, ...styles.shadowContainer }} >
-        <Text style={styles.titleText} >Iniciar Sesión</Text>
+
+        <Text style={styles.titleText} >Ingresa tu cuenta</Text>
+
         <CustomInput  
           placeHolder='Usuario'
           field='email'
@@ -53,26 +55,26 @@ const LoginScreen = () => {
 
         <CustomButon 
           name='Iniciar Sesión'
-          color2='#556dac'
           color1='#2988bc'
-          colorText='#fff'
+          color2='#556dac'
           onPress={ () => console.log('Press..') }
+          styleText={ styles.stylesTxtButon }
         />
 
         <CustomButon 
           name='Olvidaste tu contraseña'
-          color2='#fff'
-          color1='#fff'
-          colorText='#000'
+          color1='transparent'
+          color2='transparent'
           onPress={ () => console.log('Press..') }
+          styleText={{ fontSize: 14, color: '#000' }}
         />
 
         <CustomButon 
-          name='Crear nueva cuenta'
-          color2='#fff'
-          color1='#fff'
-          colorText='#000'
+          name='Crear cuenta nueva'
+          color1='transparent'
+          color2='transparent'
           onPress={ () => console.log('Press..') }
+          styleText={{ fontSize: 14, color: '#000' }}
         />
 
 
@@ -105,6 +107,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     fontSize: 20,
+    color: '#000',
+    fontWeight: 'bold'
+    
   },
 
   shadowContainer: {
@@ -118,8 +123,10 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   
-  stylesButon: {
-    borderRadius: 14,
+  stylesTxtButon: {
+    color: '#fff', 
+    fontSize: 18, 
+    fontWeight: 'bold' 
   }
 
 }) 

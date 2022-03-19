@@ -1,25 +1,27 @@
 import React from 'react'
-import { Pressable, StyleProp, Text, View, ViewProps, StyleSheet } from 'react-native';
+import { Pressable, StyleProp, Text, View, ViewProps, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { number } from 'yup';
 
 interface Props {
     name: string;
     color1: string;
     color2: string;
-    colorText: string;
     onPress: () => void;
+    styleText?: StyleProp<TextStyle>
+    styleView?: StyleProp<ViewStyle>
 }
 
-const CustomButon = ({name, color1, color2, onPress, colorText  }: Props) => {
+const CustomButon = ({name, color1, color2, onPress, styleText, styleView  }: Props) => {
     return (
         <LinearGradient 
             colors={[ color1, color2 ]}
-            style={styles.stylesButon}
+            style={{...styles.stylesButon, ...styleView as any  }}
         >
             <Pressable
             onPress={onPress}
             >
-                <Text style={{ color: colorText }} >{ name }</Text>
+                <Text style={{  ...styleText as any }} >{ name }</Text>
             </Pressable>
         </LinearGradient>
     )
