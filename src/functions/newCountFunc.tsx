@@ -14,7 +14,7 @@ export const schemaYup = yup.object().shape({
     name: yup
         .string()
         .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-        .min(3, 'Debes poner minimo 3 caracteres')
+        .min(2, 'Debes poner minimo 2 caracteres')
         .required('El nombre es requerido'),
 
     lastName1: yup
@@ -24,12 +24,12 @@ export const schemaYup = yup.object().shape({
             then: yup
                 .string()
                 .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-                .min(3, 'Se requiere al menos 3 caracteres')
+                .min(2, 'Se requiere al menos 2 caracteres')
                 .required('Debe de poner un apellido'),
             otherwise: yup
                 .string()
                 .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-                .min(3, 'Debes poner minimo 3 caracteres')
+                .min(2, 'Debes poner minimo 2 caracteres')
         }),
 
     lastName2: yup
@@ -39,36 +39,40 @@ export const schemaYup = yup.object().shape({
             then: yup
                 .string()
                 .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-                .min(3, 'Se requiere al menos 3 caracteres')
+                .min(2, 'Se requiere al menos 2 caracteres')
                 .required('Debe de poner un apellido'),
             otherwise: yup
                 .string()
                 .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-                .min(3, 'Debes poner minimo 3 caracteres')
+                .min(2, 'Debes poner minimo 2 caracteres')
         }),
+        
     phone: yup
         .string()
         .min(10, 'Su número telefónico debe tener 10 números')
         .max(10, 'Su número telefónico debe tener 10 números')
         .matches(/(\d){10}\b/, 'El teléfono celular es incorrecto')
         .typeError('Ingresa únicamente números')
-        .required('El teléfono celular es requerido'),
+        .required('El teléfono celular es obligatorio'),
 
     email: yup
         .string()
         .email('El correo electrónico es incorrecto')
         .max(80, 'Excede el máximo de caracteres')
-        .required('El correo es requerido'),
+        .required('El correo es obligatorio'),
 
     pass: yup
         .string()
         .min(8, ({ min }) => `La contraseña debe tener al menos ${min} caracteres`)
-        .required('La contraseña es requerida'),
+        .matches(
+            /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+         'La contraseña debe tener al menos un numero, una letra en mayuscula y una letra minuscula')
+        .required('La contraseña es obligatoria'),
 
     repeatPass: yup
         .string()
         .oneOf([yup.ref('pass'), null], 'Las contraseñas deben ser iguales')
-        .required('La confirmación de la contraseña es requerida'),
+        .required('La confirmación de la contraseña es obligatoria'),
 },
     [['lastName1', 'lastName2']]
 )

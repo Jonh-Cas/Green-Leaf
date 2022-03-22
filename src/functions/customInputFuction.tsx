@@ -18,6 +18,7 @@ interface textInputProps {
     }
 
     switch (field) {
+
         case 'email':
             textInputValue = {
                 keyboardType: 'email-address',
@@ -25,10 +26,11 @@ interface textInputProps {
                 icon: 'mail-outline'
             };
             break;
+
         case 'phone':
             textInputValue = {
                 keyboardType: 'phone-pad',
-                maxLeght: 50,
+                maxLeght: 10,
                 icon: 'phone-portrait-outline'
             };
             break;
@@ -38,7 +40,7 @@ interface textInputProps {
             textInputValue = {
                 icon: 'key-outline',
                 keyboardType: 'default',
-                maxLeght: 30,
+                maxLeght: 50,
             };
             break;
 

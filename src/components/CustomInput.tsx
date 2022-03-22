@@ -21,12 +21,12 @@ const CustomInput = ({ placeHolder, field, saveValue, handleBlur, error, touched
                     keyboardType={menuInput(field).keyboardType}
                     maxLength={menuInput(field).maxLeght}
                     secureTextEntry={isShown}
-                    placeholderTextColor='#999999'
+                    placeholderTextColor='#888888'
                     style={styles.textInputStyle}
                     onChangeText={(txt) => saveValue(field, txt)}
                     onBlur={handleBlur(field)}
                     value={value}
-
+                    
                 />
 
                 {
