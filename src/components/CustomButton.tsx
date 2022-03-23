@@ -2,6 +2,7 @@ import React from 'react'
 import { Pressable, StyleProp, Text, View, ViewProps, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { number } from 'yup';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface Props {
     name: string;
@@ -17,11 +18,11 @@ const CustomButton = ({name, colors, onPress, styleText, styleView  }: Props) =>
             colors={colors}
             style={{...styles.stylesButon, ...styleView as any  }}
         >
-            <Pressable
+            <TouchableOpacity
             onPress={onPress}
             >
                 <Text style={{  ...styleText as any }} >{ name }</Text>
-            </Pressable>
+            </TouchableOpacity>
         </LinearGradient>
     )
 }

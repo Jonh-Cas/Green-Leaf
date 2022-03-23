@@ -54,20 +54,21 @@ const LoginScreen = ({ navigation }: Props) => {
           colors={['#2988bc', '#556dac' ]}
           onPress={ handleSubmit }
           styleText={ styles.stylesTxtButon }
+          styleView={{ marginTop: 20, }}
         />
 
         <CustomButon 
           name='Olvidaste tu contraseña'
           colors={['transparent', 'transparent']}
           onPress={ () => console.log('Press..') }
-          styleText={{ fontSize: 14, color: '#000' }}
+          styleText={{ fontSize: 14, color: '#000', fontWeight: 'bold' }}
         />
 
         <CustomButon 
           name='Crear cuenta nueva'
           colors={['transparent', 'transparent']}
           onPress={ () => navigation.navigate('NewCountScreen') }
-          styleText={{ fontSize: 14, color: '#000' }}
+          styleText={{ fontSize: 14, color: '#000', fontWeight: 'bold' }}
         />
 
 

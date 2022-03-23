@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import CustomInput from '../components/CustomInput';
 import { useFormik } from 'formik';
@@ -7,66 +7,54 @@ import CustomButton from '../components/CustomButton';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackAppParams } from '../interfaces/StackAppNavigationInterfaces';
 import { initialValues, schemaYup } from '../functions/newCountFunc';
+import firebaseApp from '../firebase/firebase';
+import CustomModal from '../components/CustomModal';
 
 interface Props extends StackScreenProps<StackAppParams, 'NewCountScreen'> { }
 
 const NewCountScreen = ({ navigation }: Props) => {
 
+    const [isVisible, setIsVisible] = useState(false);
     const { values, touched, errors, handleBlur, handleSubmit, setFieldValue } = useFormik({
         initialValues: initialValues,
-        onSubmit: values => console.log('Values: ', values),
+        onSubmit: async values => {
+            const resp = await firebaseApp.createNewUser(values.email, values.pass);
+            if( resp === 'sendEmail' ){
+                setIsVisible(true)
+            }else{
+
+            }
+        },
         validationSchema: schemaYup,
-    })
+    });
+
+    const descriptionModal = () =>  {
+
+        return {
+            
+        }
+    }
+
+
 
     return (
+        <>  
+            <CustomModal 
+                title='Este es un modal'
+                description='Aqui esta la descripción del modal'
+                onPress={ () => setIsVisible(false) }
+                isActivity={ isVisible }
+                
+            />
 
+            <LinearGradient
+                colors={['#258039', '#fff', '#258039']}
+                style={{ flex: 1, justifyContent: 'center' }} >
 
-        <LinearGradient
-            colors={['#258039', '#fff', '#258039']}
-            style={{ flex: 1, }} >
-            <ScrollView style={{ flex: 1,  padding: 10,  }}  >
                 <View
                     style={{ ...styles.target, ...styles.shadowContainer }}
                 >
-                    <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', color: '#000' }} >Llene el formulario</Text>
-
-                    <CustomInput
-                        placeHolder='Nombre o Nombres'
-                        field='name'
-                        value={values.name}
-                        error={errors.name}
-                        touched={touched.name}
-                        saveValue={setFieldValue}
-                        handleBlur={handleBlur}
-                    />
-
-                    <CustomInput
-                        placeHolder='Apellido Parterno'
-                        field='lastName1'
-                        value={values.lastName1}
-                        error={errors.lastName1}
-                        touched={touched.lastName1}
-                        saveValue={setFieldValue}
-                        handleBlur={handleBlur}
-                    />
-                    <CustomInput
-                        placeHolder='Apellido Materno'
-                        field='lastName2'
-                        value={values.lastName2}
-                        error={errors.lastName2}
-                        touched={touched.lastName2}
-                        saveValue={setFieldValue}
-                        handleBlur={handleBlur}
-                    />
-                    <CustomInput
-                        placeHolder='Telefono'
-                        field='phone'
-                        value={values.phone}
-                        error={errors.phone}
-                        touched={touched.phone}
-                        saveValue={setFieldValue}
-                        handleBlur={handleBlur}
-                    />
+                    <Text style={ styles.titleTarget } >Llene el formulario</Text>
 
                     <CustomInput
                         placeHolder='Correo'
@@ -115,9 +103,8 @@ const NewCountScreen = ({ navigation }: Props) => {
                     />
 
                 </View>
-            </ScrollView>
-        </LinearGradient>
-
+            </LinearGradient>
+        </>
     )
 }
 
@@ -133,6 +120,7 @@ const styles = StyleSheet.create({
         padding: 10,
         alignSelf: 'center',
         marginBottom: 40,
+
     },
     shadowContainer: {
         shadowColor: "#000",
@@ -144,6 +132,14 @@ const styles = StyleSheet.create({
         shadowRadius: 4.65,
         elevation: 6,
     },
+
+    titleTarget: {
+        textAlign: 'center', 
+        fontSize: 20, 
+        fontWeight: 'bold', 
+        color: '#000'
+    },
+
     styleTextButton1: {
         fontSize: 20,
         fontWeight: 'bold',

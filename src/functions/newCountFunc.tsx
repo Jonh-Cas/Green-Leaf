@@ -11,49 +11,49 @@ export const initialValues = {
 }
 
 export const schemaYup = yup.object().shape({
-    name: yup
-        .string()
-        .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-        .min(2, 'Debes poner minimo 2 caracteres')
-        .required('El nombre es requerido'),
+    // name: yup
+    //     .string()
+    //     .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
+    //     .min(2, 'Debes poner minimo 2 caracteres')
+    //     .required('El nombre es requerido'),
 
-    lastName1: yup
-        .string()
-        .when('lastName2', {
-            is: (lastName2: string) => !lastName2 || lastName2.length === 0,
-            then: yup
-                .string()
-                .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-                .min(2, 'Se requiere al menos 2 caracteres')
-                .required('Debe de poner un apellido'),
-            otherwise: yup
-                .string()
-                .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-                .min(2, 'Debes poner minimo 2 caracteres')
-        }),
+    // lastName1: yup
+    //     .string()
+    //     .when('lastName2', {
+    //         is: (lastName2: string) => !lastName2 || lastName2.length === 0,
+    //         then: yup
+    //             .string()
+    //             .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
+    //             .min(2, 'Se requiere al menos 2 caracteres')
+    //             .required('Debe de poner un apellido'),
+    //         otherwise: yup
+    //             .string()
+    //             .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
+    //             .min(2, 'Debes poner minimo 2 caracteres')
+    //     }),
 
-    lastName2: yup
-        .string()
-        .when('lastName1', {
-            is: (lastName1: string) => !lastName1 || lastName1.length === 0,
-            then: yup
-                .string()
-                .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-                .min(2, 'Se requiere al menos 2 caracteres')
-                .required('Debe de poner un apellido'),
-            otherwise: yup
-                .string()
-                .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
-                .min(2, 'Debes poner minimo 2 caracteres')
-        }),
+    // lastName2: yup
+    //     .string()
+    //     .when('lastName1', {
+    //         is: (lastName1: string) => !lastName1 || lastName1.length === 0,
+    //         then: yup
+    //             .string()
+    //             .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
+    //             .min(2, 'Se requiere al menos 2 caracteres')
+    //             .required('Debe de poner un apellido'),
+    //         otherwise: yup
+    //             .string()
+    //             .matches(/^[A-Za-zÑñ ]*$/, 'No ingrese caracteres especiales ni con tildes')
+    //             .min(2, 'Debes poner minimo 2 caracteres')
+    //     }),
         
-    phone: yup
-        .string()
-        .min(10, 'Su número telefónico debe tener 10 números')
-        .max(10, 'Su número telefónico debe tener 10 números')
-        .matches(/(\d){10}\b/, 'El teléfono celular es incorrecto')
-        .typeError('Ingresa únicamente números')
-        .required('El teléfono celular es obligatorio'),
+    // phone: yup
+    //     .string()
+    //     .min(10, 'Su número telefónico debe tener 10 números')
+    //     .max(10, 'Su número telefónico debe tener 10 números')
+    //     .matches(/(\d){10}\b/, 'El teléfono celular es incorrecto')
+    //     .typeError('Ingresa únicamente números')
+    //     .required('El teléfono celular es obligatorio'),
 
     email: yup
         .string()
@@ -74,5 +74,5 @@ export const schemaYup = yup.object().shape({
         .oneOf([yup.ref('pass'), null], 'Las contraseñas deben ser iguales')
         .required('La confirmación de la contraseña es obligatoria'),
 },
-    [['lastName1', 'lastName2']]
+    // [['lastName1', 'lastName2']]
 )
